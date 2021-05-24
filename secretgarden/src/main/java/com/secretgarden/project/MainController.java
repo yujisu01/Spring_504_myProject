@@ -20,12 +20,12 @@ public class MainController {
 		
 		return "main";
 	}
-	@RequestMapping(value = "/board/list", method = {RequestMethod.GET})
-	public String board(Model model) {
-		logger.info("list..........................");
-		
-		return "board/list";
-	}
+//	@RequestMapping(value = "/board/list", method = {RequestMethod.GET})
+//	public String board(Model model) {
+//		logger.info("list..........................");
+//		
+//		return "/board/list";
+//	}
 	@RequestMapping(value = "/login", method = {RequestMethod.GET})
 	public String login(Model model) {
 		logger.info("login..........................");

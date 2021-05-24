@@ -89,7 +89,7 @@
                                 	<c:forEach items="${list }" var="board">
                                 		<tr>
                                 			<td>${board.bno }</td>
-                                			<td><a href="${ctx}/board/read?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&bno=${board.bno}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">${board.title}</a></td>
+                                			<td><a href="${ctx}/secretgarden/board/read?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&bno=${board.bno}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">${board.title}</a></td>
                                 			<td>${board.writer}</td>
                                 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regdate}"/></td>
                                 			<td><span class="badge bg-ref">${board.viewcnt}</span></td>
@@ -99,7 +99,7 @@
                             </table> <!-- table태그 끝 -->
                        <div class="row">
                        	<div class="col-lg-12">
-                       		<form id="searchForm" action="${ctx }/board/list" method="get">
+                       		<form id="searchForm" action="${ctx }/secretgarden/board/list" method="get">
                        			<select name="type">
                        				<option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>검색</option>
                        				<option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
@@ -139,7 +139,7 @@
 				<!--  end Pagination -->
 
 		    <!-- 실제 페이지를 클릭하면 동작을 하는 부분  -->
-			<form id='actionForm' action="${ctx}/board/list" method='get'>
+			<form id='actionForm' action="${ctx}/secretgarden/board/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
@@ -205,7 +205,7 @@
 	    }
 		
 		$("#regBtn").on("click", function() {
-			self.location = "${ctx}/board/register";
+			self.location = "${ctx}/secretgarden/board/register";
 		});
 		
 		// 페이지 번호를 클릭하면 처리하는 부분
@@ -224,7 +224,7 @@
 			actionForm.append("<input type='hidden' name='bno' value='"
 											+ $(this).attr("href")
 											+ "'>");
-			actionForm.attr("action", "${ctx}/board/read");
+			actionForm.attr("action", "${ctx}/secretgarden/board/read");
 			actionForm.submit();
 		});
 

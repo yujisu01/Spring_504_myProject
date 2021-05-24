@@ -260,8 +260,8 @@
       <div class="container">
         <div class="row mb-5 ">
           <div class="col-md-7 section-title text-center mx-auto">
-            <span class="sub-title mb-2 d-block">Recent Works</span>
-            <h2 class="title text-primary mb-3">We love what we do, check out some of our latest works</h2>
+            <span class="sub-title mb-2 d-block">THEMES</span>
+            <h2 class="title text-primary mb-3">THEMES</h2>
           </div>
         </div>
         <div class="row mb-5">

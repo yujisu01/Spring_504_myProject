@@ -17,7 +17,7 @@ import com.secretgarden.project.domain.PageDTO;
 import com.secretgarden.project.service.IBoardService;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/secretgarden/board")
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -52,7 +52,7 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result", bDto.getBno());
 		
-		return "redirect:/board/list";
+		return "redirect:/secretgarden/board/list";
 	}
 //	@RequestMapping(value="/read", method = RequestMethod.GET)
 //	// @RequestParam어노테이션을 이용해서 input네임명인 bno를 받는다.

@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j;
 public class OracleConnectionTest {
 
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-	private static final String URL = "jdbc:oracle:thin:@172.30.1.2:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@172.30.1.49:1521:xe";
 	private static final String USER = "scott";
 	private static final String PW = "1234";
 

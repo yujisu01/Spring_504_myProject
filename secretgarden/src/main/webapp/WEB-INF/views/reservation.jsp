@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+    <head profile="http://www.w3.org/2005/10/profile">
      <%@ include file="/resources/includes/header.jsp" %>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,6 +15,7 @@
         <meta name="author" content="" />
         <title>Secret Garden</title>
         <!-- Favicon-->
+
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="${ctx}/resources/css/bootstrap-datepicker.css">
 		
@@ -132,21 +134,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-show="!loaded">
+        <!-- <tr ng-show="!loaded">
           <td colspan="6"> Loading.. </td>
-        </tr>
+        </tr> -->
         <tr ng-repeat="book in sortedBookList" ng-show="loaded">
-          <td> ${reservation.bookroom} </td>
-          <td> ${book.hour} </td>
-          <td> ${book.duration} 분 </td>
+          <td> ${listAll.bookroom} </td>
+          <td> ${listAll.bookhour} </td>
+          <td> ${listAll.bookduration} 분 </td>
           <td class="difficulty">
           <span class="foreground" ng-show="book.difficulty!=0"><i class="fa fa-star" ng-repeat="n in range(0, book.difficulty)"></i><i class="fa fa-star-half-o" ng-if="book.hasHalf==true"></i><i class="fa fa-star-o" ng-repeat="n in range(0, book.restDiff)"></i></span>
           <span class="foreground" ng-show="book.difficulty==0"><i class="fa fa-question-circle"> </i></span>
           
           <td> <span ng-show="book.is_openroom" class="yellow"> OPEN ROOM </span> </td>
           <!--<span class="background"><i class="fa fa-star-o" ng-repeat="n in range(0, 5)"></i></span>--> </td>
-          <td ng-if="book.booked==true" class="red"> ${rev_completed} </td>
-          <td ng-if="book.booked==false"><a class="yellow" href="#book_a_session_wrapper" ng-click="openReservation($event, book)"> ${rev_available} </a></td>
+          <td ng-if="book.booked==true" class="red"> ${booked} </td>
+          <td ng-if="book.booked==false"><a class="yellow" href="#book_a_session_wrapper" ng-click="openReservation($event, book)"> ${booked} </a></td>
         </tr>
       </tbody>
     </table>

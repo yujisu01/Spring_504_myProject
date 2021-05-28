@@ -5,5 +5,5 @@ import java.util.List;
 import com.secretgarden.project.domain.ReservationDTO;
 
 public interface IReservationService {
-	public List<ReservationDTO> listAll(ReservationDTO rDto) throws Exception;
+	public List<ReservationDTO> reservationList(ReservationDTO rDto) throws Exception;
 }

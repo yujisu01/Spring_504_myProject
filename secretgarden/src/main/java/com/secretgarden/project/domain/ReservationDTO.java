@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class ReservationDTO {
 	
-	private Integer bookno;
+	private int bookno;
 	private String bookroom;
 	private String bookhour;
 	private String bookduration;
-	private Integer bookpeople;
+	private int bookpeople;
 	private String booked;
 }

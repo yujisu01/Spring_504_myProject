@@ -6,8 +6,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
-    <head profile="http://www.w3.org/2005/10/profile">
      <%@ include file="/resources/includes/header.jsp" %>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -15,13 +15,13 @@
         <meta name="author" content="" />
         <title>Secret Garden</title>
         <!-- Favicon-->
-
+		<!-- <link rel="icon" type="image/png" href="http://example.com/myicon.png"> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="${ctx}/resources/css/bootstrap-datepicker.css">
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 		<script src="${ctx}/resources/js/bootstrap-datepicker.min.js"></script>
-        <link rel="icon" type="${ctx}/resources/assets/image/x-icon" href="${ctx}/resources/assets/favicon.ico" />
+       <%--  <link rel="icon" type="${ctx}/resources/assets/image/x-icon" href="${ctx}/resources/assets/favicon.ico" /> --%>
         <!-- Bootstrap Icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -98,7 +98,7 @@
 		    toggleActive : true,	//이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
 		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
 		    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-		    
+		    minDate: 0
 		});//datepicker end
 	});//ready end
 	
@@ -108,7 +108,6 @@
  		format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
  		startDate: '-10d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 		 language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
- 		    
  		})//여기까지가 기본 사용 방법
              .on(picker_event, function(e) {
                   //picker_event는 "이벤트명" 이런 식으로 적는다.
@@ -125,6 +124,7 @@
 	 <table class="table">
       <thead>
         <tr>
+          <th> 순서 </th>
           <th> 게임 룸 </th>
           <th> 시작시간 </th>
           <th> 소요시간 </th>
@@ -134,21 +134,26 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr ng-show="!loaded">
+        <tr ng-show="!loaded">
           <td colspan="6"> Loading.. </td>
-        </tr> -->
+        </tr>
         <tr ng-repeat="book in sortedBookList" ng-show="loaded">
+        <c:forEach var="listAll" items="${listAll}">
+          <td> ${listAll.bookno} </td>
           <td> ${listAll.bookroom} </td>
           <td> ${listAll.bookhour} </td>
           <td> ${listAll.bookduration} 분 </td>
+          <td> ${listAll.bookpeople} </td>
+          <td> ${listAll.booked} </td>
           <td class="difficulty">
-          <span class="foreground" ng-show="book.difficulty!=0"><i class="fa fa-star" ng-repeat="n in range(0, book.difficulty)"></i><i class="fa fa-star-half-o" ng-if="book.hasHalf==true"></i><i class="fa fa-star-o" ng-repeat="n in range(0, book.restDiff)"></i></span>
-          <span class="foreground" ng-show="book.difficulty==0"><i class="fa fa-question-circle"> </i></span>
+          </c:forEach>
+          <!-- <span class="foreground" ng-show="book.difficulty!=0"><i class="fa fa-star" ng-repeat="n in range(0, book.difficulty)"></i><i class="fa fa-star-half-o" ng-if="book.hasHalf==true"></i><i class="fa fa-star-o" ng-repeat="n in range(0, book.restDiff)"></i></span>
+          <span class="foreground" ng-show="book.difficulty==0"><i class="fa fa-question-circle"> </i></span> -->
           
-          <td> <span ng-show="book.is_openroom" class="yellow"> OPEN ROOM </span> </td>
+          <!-- <td> <span ng-show="book.is_openroom" class="yellow"> OPEN ROOM </span> </td> -->
           <!--<span class="background"><i class="fa fa-star-o" ng-repeat="n in range(0, 5)"></i></span>--> </td>
-          <td ng-if="book.booked==true" class="red"> ${booked} </td>
-          <td ng-if="book.booked==false"><a class="yellow" href="#book_a_session_wrapper" ng-click="openReservation($event, book)"> ${booked} </a></td>
+          <%-- <td ng-if="listAll.booked==true" class="red"> ${listAll.booked} </td>
+          <td ng-if="listAll.booked==false"><a class="yellow" href="#" ng-click="openReservation($event, book)"> ${listAll.booked} </a></td> --%>
         </tr>
       </tbody>
     </table>

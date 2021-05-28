@@ -31,10 +31,10 @@ public class ReplyMapperTests {
 	@Autowired 
 	private ReplyMapper mapper;
 
-//	@Test
-//	public void testMapper() {
-//		log.info(mapper);
-//	}
+	@Test
+	public void testMapper() {
+		log.info(mapper);
+	}
 	
 	
 //	@Test
@@ -84,12 +84,12 @@ public class ReplyMapperTests {
 //		log.info("update count ======>"+ count);
 //	}
 	
-	@Test
-	public void testList() {
-		Criteria cri = new Criteria();
-		List<ReplyDTO> replies =mapper.getListWithPaging(cri, bnoArr[1]);
-		replies.forEach(reply -> log.info(reply));
-	}
+//	@Test
+//	public void testList() {
+//		Criteria cri = new Criteria();
+//		List<ReplyDTO> replies =mapper.getListWithPaging(cri, bnoArr[1]);
+//		replies.forEach(reply -> log.info(reply));
+//	}
 	
 
 }

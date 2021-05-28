@@ -27,7 +27,7 @@ public class ReservationController {
 		
 		logger.info("예약..........................");
 		
-		model.addAttribute("listAll",service.listAll(rDto));
+		model.addAttribute("listAll",service.reservationList(rDto).toString());
 		
 		
 		

@@ -18,7 +18,7 @@ public class ReservationServiceImpl implements IReservationService{
 	private IReservationDAO rDao;
 	
 	@Override
-	public List<ReservationDTO> listAll(ReservationDTO rDto) throws Exception {
+	public List<ReservationDTO> reservationList(ReservationDTO rDto) throws Exception {
 		return mapper.listAll(rDto);
 	}
 

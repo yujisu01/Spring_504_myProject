@@ -30,7 +30,7 @@ public class ReservationMapperTest {
 	
 	@Test
 	public void testReserList() {
-		List<ReservationDTO> rDto = mapper.listAll(null);
+		List<ReservationDTO> rDto = mapper.listAll();
 		rDto.forEach(reply -> log.info(reply));
 	}
 

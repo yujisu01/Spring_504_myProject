@@ -6,5 +6,5 @@ import java.util.List;
 import com.secretgarden.project.domain.ReservationDTO;
 
 public interface reservationMapper {
-	public List<ReservationDTO> listAll(ReservationDTO rDto);
+	public List<ReservationDTO> listAll();
 }

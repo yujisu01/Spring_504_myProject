@@ -98,7 +98,6 @@
 		    toggleActive : true,	//이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
 		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
 		    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-		    minDate: 0
 		});//datepicker end
 	});//ready end
 	
@@ -113,6 +112,7 @@
                   //picker_event는 "이벤트명" 이런 식으로 적는다.
                   //하고 싶은 행동
              }
+             
      </script>
       	
      <body>
@@ -125,6 +125,7 @@
       <thead>
         <tr>
           <th> 순서 </th>
+          
           <th> 게임 룸 </th>
           <th> 시작시간 </th>
           <th> 소요시간 </th>
@@ -134,18 +135,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-show="!loaded">
-          <td colspan="6"> Loading.. </td>
-        </tr>
-        <tr ng-repeat="book in sortedBookList" ng-show="loaded">
-        <c:forEach var="listAll" items="${listAll}">
-          <td> ${listAll.bookno} </td>
-          <td> ${listAll.bookroom} </td>
-          <td> ${listAll.bookhour} </td>
-          <td> ${listAll.bookduration} 분 </td>
-          <td> ${listAll.bookpeople} </td>
-          <td> ${listAll.booked} </td>
-          <td class="difficulty">
+    
+       <tr ng-repeat="book in sortedBookList" ng-show="loaded"> 
+       <c:forEach var="listAll" items="${reservationList}" varStatus="status">
+       
+	<%--        <p><c:out value="${listAll.bookno}"/></p>
+	        <p><c:out value="${listAll.bookroom}"/></p>
+	        <p><c:out value="${listAll.bookhour}"/></p>
+	        <p><c:out value="${listAll.bookduration}"/></p>
+	        <p><c:out value="${listAll.bookpeople}"/></p>
+	        <p><c:out value="${listAll.booked}"/></p>  
+	      	 
+	      	 <td>엘리베이터</td> --%>
+	      	 
+	      	  <td> ${listAll.bookno} </td>
+	          <td> ${listAll.bookroom} </td>
+	          <td> ${listAll.bookhour} </td>
+	          <td> ${listAll.bookduration}</td>
+	          <td> ${listAll.bookpeople} </td>
+	          <td> ${listAll.booked} </td>
+	          <td class="difficulty">   
           </c:forEach>
           <!-- <span class="foreground" ng-show="book.difficulty!=0"><i class="fa fa-star" ng-repeat="n in range(0, book.difficulty)"></i><i class="fa fa-star-half-o" ng-if="book.hasHalf==true"></i><i class="fa fa-star-o" ng-repeat="n in range(0, book.restDiff)"></i></span>
           <span class="foreground" ng-show="book.difficulty==0"><i class="fa fa-question-circle"> </i></span> -->
@@ -154,7 +163,7 @@
           <!--<span class="background"><i class="fa fa-star-o" ng-repeat="n in range(0, 5)"></i></span>--> </td>
           <%-- <td ng-if="listAll.booked==true" class="red"> ${listAll.booked} </td>
           <td ng-if="listAll.booked==false"><a class="yellow" href="#" ng-click="openReservation($event, book)"> ${listAll.booked} </a></td> --%>
-        </tr>
+         </tr> 
       </tbody>
     </table>
 	

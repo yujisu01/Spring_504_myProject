@@ -107,36 +107,40 @@
  		format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
  		startDate: '-10d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 		 language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
- 		})//여기까지가 기본 사용 방법
-             .on(picker_event, function(e) {
+ 		});//여기까지가 기본 사용 방법
+            /*  $().on(picker_event, function(e) {
                   //picker_event는 "이벤트명" 이런 식으로 적는다.
                   //하고 싶은 행동
-             }
-             
+             } */
+
      </script>
-      	
+      	<body>
+	<!-- 시작시 기본 날짜 설정은 value를 이용 -->
+			<input type="text" id="datePicker" class="form-control" value="날짜를 선택해주세요">
+		</body>
   <table class="table">
       <thead>
         <tr>
-          <th> 지점 </th>
+          
+       <!--    <th> 순서 </th> -->
+          <th> 게임룸 </th>
           <th> 시작시간 </th>
           <th> 소요시간 </th>
-          <th> 게임 룸 </th>
-          <th> 난이도 </th>
           <th> 예약가능인원 </th>
           <th> </th>
           <th> 예약상태 </th>
         </tr>
       </thead>
       <tbody>
-       	<c:forEach items="${list}" var="listAll">
+       	<c:forEach items="${listAll}" var="rDto">
        		<tr>
-       			<td>${listAll.bookno}</td>
-       			<td>${listAll.bookroom}</td>
-       			<td>${listAll.bookhour}</td>
-       			<td>${listAll.bookduration}</td>
-       			<td>${listAll.bookpeople}</td>
-       			<td>${listAll.booked}</td>
+       			<%-- <td>${rDto.bookno}</td> --%>
+       			<td>${rDto.bookroom}</td>
+       			<td>${rDto.bookhour}</td>
+       			<td>${rDto.bookduration}</td>
+       			<td>${rDto.bookpeople}</td>
+       			<td></td>
+       			<td>예약하기</td>
        		</tr>
        	</c:forEach>
        </tbody>

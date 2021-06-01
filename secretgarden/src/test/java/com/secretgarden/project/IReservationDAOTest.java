@@ -2,6 +2,8 @@ package com.secretgarden.project;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.secretgarden.project.domain.ReservationDTO;
 import com.secretgarden.project.persistence.IReservationDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +26,9 @@ public class IReservationDAOTest {
 	
 	@Test
 	public void testRead() throws Exception{
-		logger.info(rDao.toString());
+		//logger.info(rDao.listAll().toString());
+		List<ReservationDTO> list = rDao.listAll();
+		list.forEach(reservation -> logger.info(reservation.getBookno() + reservation.getBookroom()));
 	}
 
 }

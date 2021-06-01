@@ -23,6 +23,24 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	<beans:bean id="loginInterceptor" class="com.secretgarden.project.interceptor.LoginInterceptor"/>
+	<beans:bean id="AuthInterceptor" class="com.secretgarden.project.interceptor.AuthInterceptor"/>
+		<interceptors>
+			<interceptor>
+				<mapping path="/secretgarden/member/loginPost"/>
+				<beans:ref bean="loginInterceptor"/>
+			</interceptor>
+			<interceptor>
+				<mapping path="/secretgarden/board/register"/>
+				<beans:ref bean="AuthInterceptor"/>
+			</interceptor>
+			<interceptor>
+				<mapping path="/secretgarden/board/register"/>
+				<mapping path="/secretgarden/board/modify"/>
+				<mapping path="/secretgarden/board/remove"/>
+				<beans:ref bean="AuthInterceptor"/>
+			</interceptor>
+		</interceptors>
 	
 	<context:component-scan base-package="com.secretgarden.project" />
 	

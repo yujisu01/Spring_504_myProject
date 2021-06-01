@@ -1,6 +1,6 @@
-package com.secretgarden.project.persistence;
+package com.secretgarden.project.member.persistence;
 
-import com.secretgarden.project.domain.MemberDTO;
+import com.secretgarden.project.member.domain.MemberDTO;
 
 public interface IMemberDAO {
 

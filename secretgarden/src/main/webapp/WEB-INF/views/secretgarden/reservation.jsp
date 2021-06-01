@@ -115,60 +115,32 @@
              
      </script>
       	
-     <body>
-	<!-- 시작시 기본 날짜 설정은 value를 이용 -->
-	<input type="text" id="datePicker" class="form-control" value="날짜를 선택해주세요">
-	
-	<!-- 달력끝 -->
-	
-	 <table class="table">
+  <table class="table">
       <thead>
         <tr>
-          <th> 순서 </th>
-          
-          <th> 게임 룸 </th>
+          <th> 지점 </th>
           <th> 시작시간 </th>
           <th> 소요시간 </th>
+          <th> 게임 룸 </th>
           <th> 난이도 </th>
+          <th> 예약가능인원 </th>
           <th> </th>
           <th> 예약상태 </th>
         </tr>
       </thead>
       <tbody>
-    
-       <tr ng-repeat="book in sortedBookList" ng-show="loaded"> 
-       <c:forEach var="listAll" items="${reservationList}" varStatus="status">
-       
-	<%--        <p><c:out value="${listAll.bookno}"/></p>
-	        <p><c:out value="${listAll.bookroom}"/></p>
-	        <p><c:out value="${listAll.bookhour}"/></p>
-	        <p><c:out value="${listAll.bookduration}"/></p>
-	        <p><c:out value="${listAll.bookpeople}"/></p>
-	        <p><c:out value="${listAll.booked}"/></p>  
-	      	 
-	      	 <td>엘리베이터</td> --%>
-	      	 
-	      	  <td> ${listAll.bookno} </td>
-	          <td> ${listAll.bookroom} </td>
-	          <td> ${listAll.bookhour} </td>
-	          <td> ${listAll.bookduration}</td>
-	          <td> ${listAll.bookpeople} </td>
-	          <td> ${listAll.booked} </td>
-	          <td class="difficulty">   
-          </c:forEach>
-          <!-- <span class="foreground" ng-show="book.difficulty!=0"><i class="fa fa-star" ng-repeat="n in range(0, book.difficulty)"></i><i class="fa fa-star-half-o" ng-if="book.hasHalf==true"></i><i class="fa fa-star-o" ng-repeat="n in range(0, book.restDiff)"></i></span>
-          <span class="foreground" ng-show="book.difficulty==0"><i class="fa fa-question-circle"> </i></span> -->
-          
-          <!-- <td> <span ng-show="book.is_openroom" class="yellow"> OPEN ROOM </span> </td> -->
-          <!--<span class="background"><i class="fa fa-star-o" ng-repeat="n in range(0, 5)"></i></span>--> </td>
-          <%-- <td ng-if="listAll.booked==true" class="red"> ${listAll.booked} </td>
-          <td ng-if="listAll.booked==false"><a class="yellow" href="#" ng-click="openReservation($event, book)"> ${listAll.booked} </a></td> --%>
-         </tr> 
-      </tbody>
-    </table>
-	
-	</body>
-        
+       	<c:forEach items="${list}" var="listAll">
+       		<tr>
+       			<td>${listAll.bookno}</td>
+       			<td>${listAll.bookroom}</td>
+       			<td>${listAll.bookhour}</td>
+       			<td>${listAll.bookduration}</td>
+       			<td>${listAll.bookpeople}</td>
+       			<td>${listAll.booked}</td>
+       		</tr>
+       	</c:forEach>
+       </tbody>
+      </table>
         
         
         

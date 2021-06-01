@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.secretgarden.project.memberMapper">
+ <mapper namespace="com.secretgarden.project.member.mapper.MemberMapper">
  	<select id="getTime" resultType="string">
  		select sysdate
  		from dual
@@ -11,12 +11,12 @@
  		insert INTO tbl_member(userid, userpw, username, email)
  		values(#{userid}, #{userpw}, #{username}, #{email})
  	</insert>
- 	<select id="selMember" resultType="com.secretgarden.project.domain.MemberDTO">
+ 	<select id="selMember" resultType="com.secretgarden.project.member.domain.MemberDTO">
  		select *
  		from tbl_member
  		where userid= #{userid}
  	</select>
- 	<select id="selLoginInfo" resultType="com.secretgarden.project.domain.MemberDTO">
+ 	<select id="selLoginInfo" resultType="com.secretgarden.project.member.domain.MemberDTO">
  		select *
  		from tbl_member
  		where userid = #{userid}
@@ -31,4 +31,10 @@
  		delete from tbl_member
  		where userid=#{userid}
  	</delete>
+ 	<select id="login" resultType="com.secretgarden.project.member.domain.MemberDTO">
+ 		select *
+ 		from tbl_member
+ 		where userid = #{userid}
+ 		and userpw = #{userpw}
+ 	</select>
  </mapper>

@@ -65,7 +65,14 @@
                     <li><a href="${ctx }/secretgarden/board/list" class="nav-link">QnA</a></li>
                     <li><a href="#studio-section" class="nav-link">Coming soon</a></li>
                     <li><a href="#contact-section" class="nav-link">Contact Us</a></li>
-                    <li><a href="${ctx }/secretgarden/login" class="nav-link">Log in</a></li>
+                   <c:choose>
+                        	<c:when test="${not empty login }">
+                        		<li><a href="${ctx }/secretgarden/member/logout" class="nav-link">Logout</a></li>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<li><a href="${ctx }/secretgarden/member/login" class="nav-link">Login</a></li>
+                        	</c:otherwise>
+                        </c:choose>
                   </ul>
                 </div>
               </nav>

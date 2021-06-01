@@ -1,4 +1,4 @@
-package com.secretgarden.project.persistence.impl;
+package com.secretgarden.project.member.persistence.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.secretgarden.project.domain.MemberDTO;
-import com.secretgarden.project.persistence.IMemberDAO;
+import com.secretgarden.project.member.domain.MemberDTO;
+import com.secretgarden.project.member.persistence.IMemberDAO;
 // DAO객체에서 사용함
 @Repository
 public class MemberDAOImpl implements IMemberDAO{

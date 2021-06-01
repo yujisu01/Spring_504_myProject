@@ -1,4 +1,4 @@
-package com.secretgarden.project.domain;
+package com.secretgarden.project.member.domain;
 
 import java.sql.Timestamp;
 

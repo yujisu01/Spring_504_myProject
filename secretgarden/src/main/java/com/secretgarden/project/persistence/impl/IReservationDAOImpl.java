@@ -16,14 +16,16 @@ public class IReservationDAOImpl implements IReservationDAO{
 	@Autowired
 	private SqlSession session;
 	
-	private static final String namespace = "com.secretgarden.project.domain.reservationMapper";
+	private static final String namespace = "com.secretgarden.project.reservationMapper";
 	
 	@Override
 	public List<ReservationDTO> listAll() throws Exception {
 		// TODO Auto-generated method stub
-		List<ReservationDTO> result = new ArrayList<ReservationDTO>();
-		reservationMapper rMapper = session.getMapper(reservationMapper.class);
-		result = rMapper.listAll();
+		/*
+		 * List<ReservationDTO> result = new ArrayList<ReservationDTO>();
+		 * reservationMapper rMapper = session.getMapper(reservationMapper.class);
+		 * result = rMapper.listAll();
+		 */		
 		return session.selectList("reservationMapper.listAll");
 	}
 

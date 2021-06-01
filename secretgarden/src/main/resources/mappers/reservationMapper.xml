@@ -6,5 +6,6 @@
 	<select id="listAll" resultType="com.secretgarden.project.domain.ReservationDTO">
 		select *
 		from tbl_book
+		
 	</select>
 </mapper>

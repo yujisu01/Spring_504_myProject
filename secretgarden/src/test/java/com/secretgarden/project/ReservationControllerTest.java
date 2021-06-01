@@ -36,7 +36,10 @@ public void setup() {
 }
 	@Test
 	public void testRead() throws Exception{
-		logger.info(""+mockMvc.perform(MockMvcRequestBuilders.get("/reservation")));
+		logger.info(""+mockMvc.perform(MockMvcRequestBuilders.get("/secretgarden/reservation"))
+								.andReturn()
+								.getModelAndView()
+								.getModelMap());
 	}
 
 }

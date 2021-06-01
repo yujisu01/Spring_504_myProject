@@ -43,6 +43,8 @@
    
    <context:component-scan base-package="com.secretgarden.project"></context:component-scan>
    <mybatis-spring:scan base-package="com.secretgarden.project.board.mapper"/>
+   <mybatis-spring:scan base-package="com.secretgarden.project.member.mapper"/>
+   
 
 </beans>
 

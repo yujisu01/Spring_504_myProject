@@ -52,7 +52,7 @@
                         <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#portfolio">Themes</a></li>
                         <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#contact">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/board/list">QnA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/member/login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,15 +70,15 @@
 	<div class="bg-img">
 		<div class="content">
 		<h2>Login</h2>
-			<form action="login.project" name="register" method="post">
+			<form action="${ctx }/secretgarden/member/loginPost" method="post">
 			<fieldset>
 				<div class="field">
 					<span class="fa fa-user"></span>
-					 	<input type="text" name="id" required placeholder="ID">
+					 	<input type="text" name="userid" required placeholder="ID">
 					 	</div>
 					 		<div class="field space">
 					<span class="fa fa-lock"></span>
-					 	<input type="password" name="pwd" class="password" required placeholder="Password">
+					 	<input type="password" name="userpw" class="password" required placeholder="Password">
 					 	<span class="show">show</span>
 					 	</div>
 					 	</fieldset>

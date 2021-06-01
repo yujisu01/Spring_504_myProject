@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.secretgarden.project.member.domain.MemberDTO;
 import com.secretgarden.project.member.service.IMemberService;
@@ -60,5 +61,12 @@ public class MemberController {
 			// 개인프로젝트에는 main으로 꽂아야함.
 		return "redirect:/secretgarden/main";
 	}
+	@RequestMapping(value = "/insertMember", method = {RequestMethod.GET})
+	public void insertMemberGET(MemberDTO mDto, Model model) {
+		log.info("insertMember..........................");
+		
+		//return "insertMember";
+	}
+
 
 }

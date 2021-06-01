@@ -4,5 +4,6 @@ import com.secretgarden.project.member.domain.MemberDTO;
 
 public interface MemberMapper {
 	public MemberDTO login(MemberDTO mDto);
+	public void insertMember(MemberDTO mDto);
 
 }

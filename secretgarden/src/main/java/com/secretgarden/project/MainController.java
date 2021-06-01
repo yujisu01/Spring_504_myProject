@@ -32,12 +32,12 @@ public class MainController {
 		
 		return "login";
 	}
-	@RequestMapping(value = "/join", method = {RequestMethod.GET})
-	public String join(Model model) {
-		logger.info("join..........................");
-		
-		return "join";
-	}
+	/*
+	 * @RequestMapping(value = "/join", method = {RequestMethod.GET}) public String
+	 * join(Model model) { logger.info("join..........................");
+	 * 
+	 * return "join"; }
+	 */
 //	@RequestMapping(value = "/booking", method = {RequestMethod.GET})
 //	public String booking(Model model) {
 //		logger.info("booking..........................");

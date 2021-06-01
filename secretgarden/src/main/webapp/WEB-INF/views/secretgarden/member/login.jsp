@@ -87,7 +87,7 @@
 					 	</div>
 					 		<div class="field">
 					 	<input type="submit" value="LOGIN">
-					 	<input type="button" value="JOIN IN" onclick="location='${ctx }/secretgarden/join'">
+					 	<input type="button" value="JOIN IN" onclick="location='${ctx }/secretgarden/member/insertMember'">
 					 	</div>
 					 	<div class="login">Or login with</div>
 					 	

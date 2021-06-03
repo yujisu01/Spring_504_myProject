@@ -103,21 +103,14 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
-	public String profile(HttpSession session, Model model, MemberDTO mDto) throws Exception{
-		Object obj = session.getAttribute("login");
-		mDto = (MemberDTO) obj;
-		String userid = mDto.getUserid();
-		
-		model.addAttribute(userid);
-		return null;
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	public void updateMember(MemberDTO mDto, HttpSession session, RedirectAttributes rttr, Model model) throws Exception{
+		rttr.addFlashAttribute("msg","회원정보 수정이 완료되었습니다.");
+		}
 	
-	
-	}
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public void mypage(String userid, Model model, HttpSession session) throws Exception {
-		log.info("userid===>"+ userid);
-		//model.addAttribute("mDto",service.mypage(userid));
-	}
+	public void mypage() throws Exception {
+		
+		}
 
 }

@@ -75,7 +75,7 @@
         </nav>
 <body>
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" action="/mypage">
+    <form class="form-horizontal" role="form" method="POST" action="${ctx}/secretgarden/member/mypage">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -92,7 +92,7 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
                         <input type="text" name="userid" class="form-control" id="userid"
-                              readonly value="${mDto.username}" required autofocus>
+                              readonly value="${login.userid}" required autofocus>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
                         <input type="text" name="username" class="form-control" id="username"
-                              readonly value="${member.username}" required autofocus>
+                              readonly value="${login.username}" required autofocus>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                         <input type="text" name="email" class="form-control" id="email"
-                               readonly value="${member.email}" required autofocus>
+                               readonly value="${login.email}" required autofocus>
                     </div>
                 </div>
             </div>

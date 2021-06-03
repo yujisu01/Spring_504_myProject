@@ -68,6 +68,7 @@
                    <c:choose>
                         	<c:when test="${not empty login }">
                         		<li><a href="${ctx }/secretgarden/member/logout" class="nav-link">Logout</a></li>
+                        		<li><a href="${ctx }/secretgarden/member/mypage" class="nav-link">My page</a></li>
                         	</c:when>
                         	<c:otherwise>
                         		<li><a href="${ctx }/secretgarden/member/login" class="nav-link">Login</a></li>

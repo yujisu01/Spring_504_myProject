@@ -10,4 +10,5 @@ public interface IMemberDAO {
 	public MemberDTO selLoginInfo(String userid, String userpw) throws Exception;
 	public int updateMember(MemberDTO mDto) throws Exception; 
 	public int deleteMember(String userid) throws Exception;
+	public MemberDTO mypage(String userid) throws Exception;
 }

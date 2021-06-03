@@ -2,6 +2,7 @@ package com.secretgarden.project;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.secretgarden.project.board.service.IReservationService;
 import com.secretgarden.project.domain.ReservationDTO;
@@ -29,10 +31,18 @@ public class ReservationController {
 		logger.info("예약..........................");
 		List<ReservationDTO> rDtoList = service.reservationList();
 		for (ReservationDTO reservationDTO : rDtoList) {
-			logger.info("reservationDTO ====>" + reservationDTO.toString());
+			//logger.info("reservationDTO ====>" + reservationDTO.toString());
 		}
 		model.addAttribute("listAll",service.reservationList());
 		
+	}
+	@RequestMapping("/reservation/reservationDetail")
+	public String reservationDetail(@RequestParam("bookno") String bookno,
+								 @RequestParam("rdate") Date rdate) throws Exception{
+		logger.info("bookno ====>" + bookno);
+		logger.info("rDate ====> " + rdate);
+		
+		return "reservationDetail";
 		
 		
 	}

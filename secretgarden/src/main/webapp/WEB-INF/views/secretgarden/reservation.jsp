@@ -73,6 +73,26 @@
 		
 		
 		<script>
+		
+		/* function reservationForm(url) {
+			var form = document.createElement("form");
+			var parentNoInput = document.createElement("input");
+			var rdate = document.getElementsByName("rdate")[0].value;
+			//alert(rdate);
+			form.setAttribute("method","post");
+			form.setAttribute("action",url);
+			
+			parentNoInput = document.createElement("input");
+			parentNoInput.setAttribute("type","hidden");
+			parentNoInput.setAttribute("name","rdate");
+			parentNoInput.setAttribute("value",rdate);
+			
+			form.appendChild(parentNoInput);
+			document.body.appendChild(form);
+			
+			form.submit();
+		}
+		 */
 	$(function() {	
 		$('#datePicker').datepicker({
 		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
@@ -97,26 +117,39 @@
 		    todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
 		    toggleActive : true,	//이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
 		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
-		    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+		    language : "ko"	,//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+         onSelect:function(d){
+					alert(d+"선택되었습니다");
+					  var arr=d.split("/");
+			            var year=arr[0];
+			            var month=arr[1];
+			            var day=arr[2];
+			            
+			            $("#year").text(year);
+			            $("#month").text(month);
+			            $("#day").text(day);
+			            var rdate=new Date($("#date").datepicker({dateFormat:"yy/mm/dd"}).val());
+				}
 		});//datepicker end
 	});//ready end
 	
-	</script>
-     <script>
      $('#datePicker').datepicker({
  		format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
  		startDate: '-10d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
-		 language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+		 language : "ko",	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
  		});//여기까지가 기본 사용 방법
             /*  $().on(picker_event, function(e) {
                   //picker_event는 "이벤트명" 이런 식으로 적는다.
                   //하고 싶은 행동
              } */
-
-     </script>
+		$("#datepicker_bbs").datepicker({ minDate: 0});
+		 $('#datepicker').datepicker('setDate', 'today');
+		
+	</script>
+  
       	<body>
 	<!-- 시작시 기본 날짜 설정은 value를 이용 -->
-			<input type="text" id="datePicker" class="form-control" value="날짜를 선택해주세요">
+			<input type="text" name="rdate" id="datePicker" class="form-control" value="날짜를 선택해주세요" readonly id="datepicker_bbs" >
 		</body>
   <table class="table">
       <thead>
@@ -140,9 +173,12 @@
        			<td>${rDto.bookduration}</td>
        			<td>${rDto.bookpeople}</td>
        			<td></td>
-       			<td>예약하기</td>
+       			<td><a href="#">예약하기</a></td>
+       			<%-- <td><a href="${ctx}/secretgarden/reservationDetail?bookno=${}&date=${}">예약하기</a></td> --%>
        		</tr>
        	</c:forEach>
+       
+       	
        </tbody>
       </table>
         

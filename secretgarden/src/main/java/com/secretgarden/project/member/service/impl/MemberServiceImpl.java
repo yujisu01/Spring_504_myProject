@@ -23,8 +23,23 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public void insertMember(MemberDTO mDto) throws Exception {
-		mDao.insertMember(mDto);
+		mapper.insertMember(mDto);
+		//return mDao.insertMember(mDto);
 		
+	}
+
+	@Override
+	public int updateMember(MemberDTO mDto) throws Exception {
+		return mapper.updateMember(mDto);
+	}
+
+	@Override
+	public int deleteMember(String userid) throws Exception {
+		return mapper.deleteMember(userid);
+	}
+	@Override
+	public MemberDTO mypage(String userid) throws Exception{
+		return mapper.mypage(userid);
 	}
 
 }

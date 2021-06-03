@@ -59,5 +59,10 @@ public class MemberDAOImpl implements IMemberDAO{
 		return sqlSession.delete(namespace + ".deleteMember", userid);
 		
 	}
+	@Override
+	public MemberDTO mypage(String userid) throws Exception{
+		return sqlSession.selectOne(namespace + ".mypage", userid);
+		
+	}
 
 }

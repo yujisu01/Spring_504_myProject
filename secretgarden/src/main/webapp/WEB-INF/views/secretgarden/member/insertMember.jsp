@@ -45,16 +45,16 @@
         <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="${ctx}/"><b>Admin</b>LTE</a>
+    <a href="${ctx}/"><b>Secret Garden</b></a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Hello</p>
 
-      <form action="${ctx}/member/insertMember" method="post">
+      <form action="${ctx }/secretgarden/member/insertMemberPost" method="post" id="register">
         <div class="input-group mb-3">
-          <input type="text" name="userId" class="form-control" placeholder="아이디">
+          <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-exclamation"></span>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" name="userName" class="form-control" placeholder="이름">
+          <input type="text" name="username" id="username" class="form-control" placeholder="이름">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" name="userEmail" class="form-control" placeholder="이메일">
+          <input type="email" name="email" id="email" class="form-control" placeholder="이메일">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="userPw" class="form-control" placeholder="비밀번호">
+          <input type="password" id="userpw" name="userpw" class="form-control" placeholder="비밀번호">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="비밀번호 확인">
+          <input type="password" id="userpw2" class="form-control" placeholder="비밀번호 확인">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -104,13 +104,14 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="pwConfirm()">Register</button>
+            <button type="button" class="cancle btn-danger btn-block">Cancle</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <a href="${ctx}/member/login" class="text-center">I already have a membership</a>
+     <%--  <a href="${ctx}/member/login" class="text-center">I already have a membership</a> --%>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -126,7 +127,56 @@
             increaseArea: '20%' // optional
         });
     });
+    
+    function pwConfirm() {
+    	 
+    		var userpw = document.getElementById('userpw').value;	
+    		var userpw2 = document.getElementById('userpw2').value;
+
+    		
+    		if(userpw != userpw2){
+    			alert("비밀번호가 불일치합니다");
+    		}else{
+    			document.getElementById('register').submit();
+    		}
+    	}
 </script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			// 취소
+			$(".cancle").on("click", function(){
+				
+				location.href = "${ctx }/secretgarden/member/login"
+						    
+			});
+		
+			$("#submit").on("click", function(){
+				if($("#userId").val()==""){
+					alert("아이디를 입력해주세요.");
+					$("#userId").focus();
+					return false;
+				}
+				if($("#userpw").val()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#userpw").focus();
+					return false;
+				}
+				 if(insertMember.username.value=="") {
+			           alert("이름을 입력해 주세요");
+			           insertMember.username.focus();
+			           return false;
+			       }
+				if($("#email").val()==""){
+					alert("이메일을 입력해주세요.");
+					$("#email").focus();
+					return false;
+				}
+			});
+			
+				
+			
+		})
+	</script>
 </body>
         
         

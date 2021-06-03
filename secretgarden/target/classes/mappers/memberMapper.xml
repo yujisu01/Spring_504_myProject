@@ -37,4 +37,9 @@
  		where userid = #{userid}
  		and userpw = #{userpw}
  	</select>
+ 	<select id="mypage" resultType="com.secretgarden.project.member.domain.MemberDTO">
+ 		select userpw, username, email
+ 		from tbl_member
+ 		where userid=#{userid}
+ 	</select>
  </mapper>

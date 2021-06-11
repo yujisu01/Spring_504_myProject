@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.secretgarden.project.board.domain.Criteria;
 import com.secretgarden.project.board.domain.ReplyDTO;
+import com.secretgarden.project.board.domain.ReplyPageDTO;
 import com.secretgarden.project.board.service.IReplyService;
 
 @RestController
@@ -47,18 +48,19 @@ public class ReplyController {
 		
 	}
 	// get방식이지만 post방식으로 넘어가는것처럼 표시
-	// bno랑 page 받아와야함
+	// bno랑 page 받아와야함 
 	@GetMapping(value = "/pages/{bno}/{page}",
 			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	// 여러건 들어오니까 DTO로받음
-	public ResponseEntity<List<ReplyDTO>> getList(
+	public ResponseEntity<ReplyPageDTO> getList(
 			@PathVariable("page") int page,
 			@PathVariable("bno") int bno) {
 			Criteria cri = new Criteria(page, 10);
 			log.info("get Reply List bno ====> " + bno);
 			log.info("cri =====>) " + cri);
 				// http~: 상태코드
-			return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+			return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
+			
 		}
 	
 	@GetMapping(value = "/{rno}",

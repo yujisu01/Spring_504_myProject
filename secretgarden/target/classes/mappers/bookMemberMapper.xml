@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.secretgarden.project.board.mapper.bookMemberMapper">
+ <insert id="insertBookMem" parameterType="com.secretgarden.project.domain.BookMemberDTO">
+ 	insert into tbl_bookmember(namefield, phonefield, emailfield, pwfield, bookno)
+ 	values(#{namefield},#{phonefield},#{emailfield},#{pwfield},#{bookno})
+ </insert>
+ <select id="mybook" resultType="com.secretgarden.project.domain.BookMemberDTO">
+ 	select *
+ 	from tbl_bookmember
+ 	where emailfield = #{emailfield}
+ 	and pwfield = #{pwfield}
+ </select>
+ <delete id="deleteBookMem">
+ 	delete from tbl_bookmember
+ 	where emailfield = #{emailfield} 
+ </delete>
+ 
+ </mapper>

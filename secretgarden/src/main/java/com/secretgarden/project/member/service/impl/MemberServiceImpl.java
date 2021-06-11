@@ -34,12 +34,17 @@ public class MemberServiceImpl implements IMemberService{
 	}
 
 	@Override
-	public int deleteMember(String userid) throws Exception {
-		return mapper.deleteMember(userid);
+	public int deleteMember(MemberDTO mDto) throws Exception {
+		return mapper.deleteMember(mDto);
 	}
 	@Override
 	public MemberDTO mypage(String userid) throws Exception{
 		return mapper.mypage(userid);
+	}
+
+	@Override
+	public int idcheck(String userid) throws Exception {
+		return mapper.idcheck(userid);
 	}
 
 }

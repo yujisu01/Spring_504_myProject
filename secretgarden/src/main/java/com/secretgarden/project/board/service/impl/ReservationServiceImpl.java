@@ -22,4 +22,9 @@ public class ReservationServiceImpl implements IReservationService{
 		return mapper.listAll();
 	}
 
+	@Override
+	public ReservationDTO reservationDetail(int bookno) throws Exception {
+		return mapper.listDetail(bookno);
+	}
+
 }

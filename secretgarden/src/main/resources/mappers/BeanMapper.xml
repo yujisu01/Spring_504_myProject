@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.secretgarden.project.persistence.IBeanDAO">
+ 	<resultMap type="com.secretgarden.project.domain.BookMemberDTO" id="BookMemberMap">
+ 		<id property="namefield" column="namefield"/>
+ 		<id property="phonefield" column="phonefield"/>
+ 		<id property="emailfield" column="emailfield"/>
+ 		<id property="pwfield" column="pwfield"/>
+ 	</resultMap>
+ 	<resultMap type="com.secretgarden.project.domain.ReservationDTO" id="ReservationMap">
+ 		<id property="bookno" column="bookno"/>
+ 		<id property="bookroom" column="bookroom"/>
+ 		<id property="bookhour" column="bookhour"/>
+ 		<id property="bookduration" column="bookduration"/>
+ 		<id property="bookpeople" column="bookpeople"/>
+ 		<id property="booked" column="booked"/>
+ 		<id property="rdate" column="rdate"/>
+ 	</resultMap>
+ 	<resultMap type="com.secretgarden.project.domain.BeanDTO" id="BeanMap">
+ 		<collection property="BookMemberDTO" resultMap="BookMemberMap" />
+ 		<collection property="ReservationDTO" resultMap="ReservationMap" />
+ 	</resultMap>
+ 	<select id="testRow" resultMap="BeanMap">
+ 		select *
+ 		from tbl_bookmember bookmem, tbl_book book
+ 		where bookmem.bookno = book.bookno
+ 	</select>
+ </mapper>

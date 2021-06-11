@@ -29,4 +29,10 @@ public class IReservationDAOImpl implements IReservationDAO{
 		return session.selectList("reservationMapper.listAll");
 	}
 
+	@Override
+	public ReservationDTO listDetail(int bookno) throws Exception {
+		
+		return session.selectOne("reservationMapper.bookno");
+	}
+
 }

@@ -21,6 +21,23 @@
     <link rel="stylesheet" href="${ctx}/resources/css/aos.css">
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="${ctx}/resources/css/style.css">
+    
+   <!--  <style type="text/css">
+    .gmap {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+	.gmap iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100;
+}
+    </style> -->
   </head>
  
   
@@ -347,17 +364,17 @@
 
            <div class="row mb-5">
           <div class="col-lg-6 mb-4 mb-lg-0">
-            <img src="${ctx}/resources/images/th11.png" alt="Image" class="img-fluid">
+            <img src="${ctx}/resources/images/th3.jpg" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
-            <h3>엘리베이터</h3>
-            <p class="mb-4">‘주차장’에서 자기 자신의 이름을 포함해 모든 과거의 기억을 잃은체 깨어난 당신. <br>
-			머리에는 자루가 씌워지고, 손발이 묶인 상태에서 용케도 탈출에 성공하여 건물 안까지 침투하는데 성공했다.<br>
-			 그리고 그 과정 중에 당신은 무엇인가를 알아내는데....?</p>
+            <h3>화성탐사선의 임무</h3>
+            <p class="mb-4">(탈출하라 1988과 이어집니다)<br>
+			스스로 개발한 타임머신을 타고 1988년 아버지의 자취방에 찾아간 당신. 시간여행을 계속 하기로 맘먹는다. 타임머신을 키고 '화성(Mars)'를 선택하자, 눈앞에서 타임포털이 펼쳐지게 된다. <br>
+			이곳은.......화성.....?</p>
             <p class="mb-4"><a href="${ctx }/secretgarden/reservation" class="readmore">예 약 하 기</a></p>
             <div class="testimonial bg-white h-100">
               <blockquote class="mb-3">
-                <p>&ldquo;방탈출 고인물에게는 추리까지 들어가서 오랜만에 색다른 느낌이였습니다...진짜 존잼 사물함도 많아지고 <strong>직원분도 친절하셨어용</strong>&rdquo;</p>
+                <p>&ldquo;매우 친절하게 스토리를 설명해주시고, <strong>힌트가 다양해서 좋았습니다. </strong>체력쓰는부분도 있어서 다이어트도 돼요</strong>&rdquo;</p>
               </blockquote>
               <div class="d-flex align-items-center vcard">
                 <figure class="mb-0 mr-3">
@@ -533,10 +550,11 @@
             <span class="sub-title mb-2 d-block">Get In Touch</span>
             <h2 class="title text-primary">Contact Us</h2>
           </div>
-
-         <p align="middle">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.341466153088!2d127.0264379151658!3d37.499863779810376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15831e2a919%3A0x5a24c247c604f45!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsl63sgrzrj5kg6rCV64Ko64yA66GcOTbquLggMjA!5e0!3m2!1sko!2skr!4v1619352516557!5m2!1sko!2skr" width="1000" height="680" style="border:0;" allowfullscreen="" loading="lazy" ></iframe><br>
-		</p>
+		<div class="gmap">
+	         <p align="center">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.341466153088!2d127.0264379151658!3d37.499863779810376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15831e2a919%3A0x5a24c247c604f45!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsl63sgrzrj5kg6rCV64Ko64yA66GcOTbquLggMjA!5e0!3m2!1sko!2skr!4v1619352516557!5m2!1sko!2skr" width="100%" height="680" style="border:0;" allowfullscreen="" loading="lazy" ></iframe><br>
+			</p>
+		</div>
 
         </form>
       </div>
@@ -560,6 +578,8 @@
   <script type="text/javascript" src="/resources/js/isotope.pkgd.min.js"></script>
   <script type="text/javascript" src="/resources/js/jquery.fancybox.min.js"></script>
   <script type="text/javascript" src="/resources/js/main.js"></script>
+ 
+  
 
   </body>
 </html>

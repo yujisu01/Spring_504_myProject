@@ -4,8 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.secretgarden.project.board.mapper.reservationMapper">
 	<select id="listAll" resultType="com.secretgarden.project.domain.ReservationDTO">
-		select *
+		select bookno, bookroom, bookhour, bookduration, 
+				bookpeople, booked
 		from tbl_book
 		
+	</select>
+	<select id="listDetail" parameterType="int" resultType="com.secretgarden.project.domain.ReservationDTO">
+		select bookno, bookroom, bookhour, bookduration, bookpeople
+		from tbl_book
+		where bookno=#{bookno}
 	</select>
 </mapper>

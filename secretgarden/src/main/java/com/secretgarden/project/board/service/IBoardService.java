@@ -2,6 +2,7 @@ package com.secretgarden.project.board.service;
 
 import java.util.List;
 
+import com.secretgarden.project.board.domain.BoardAttachDTO;
 import com.secretgarden.project.board.domain.BoardDTO;
 import com.secretgarden.project.board.domain.Criteria;
 
@@ -13,5 +14,6 @@ public interface IBoardService {
 	public boolean remove(Integer bno) throws Exception;
 	public List<BoardDTO> listAll(Criteria cri) throws Exception;
 	public int getTotalCnt(Criteria cri) throws Exception;
+	public List<BoardAttachDTO> getAttachList(int bno);
 	
 }

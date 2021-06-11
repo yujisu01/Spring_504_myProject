@@ -1,5 +1,6 @@
 package com.secretgarden.project.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,11 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.secretgarden.project.member.domain.MemberDTO;
@@ -84,7 +88,7 @@ public class MemberController {
 	
 	}
 	@PostMapping("/insertMemberPost")
-	public String insertMemberPOST(MemberDTO mDto, Model model,RedirectAttributes rttr) throws Exception{
+	public String insertMemberPOST(String userid, MemberDTO mDto, Model model,RedirectAttributes rttr) throws Exception{
 //		String hashedPw =  BCrypt.hashpw(mDto.getUserpw(), BCrypt.gensalt());
 //		mDto.setUserpw(hashedPw);
 //		service.insertMember(mDto);
@@ -96,21 +100,81 @@ public class MemberController {
 		
 		log.info("post insertMember.............");
 		log.info("member.toString...............->" + mDto.toString());
-		service.insertMember(mDto);
+
+		// service.insertMember(mDto);
+		int result = service.idcheck(userid);
+		try {
+			if(result == 1) {
+				return "/member/insertMember";
+				
+			}else if(result ==0) {
+				service.insertMember(mDto);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 		rttr.addFlashAttribute("message","회원가입 성공");
 		
 		return "redirect:/secretgarden/member/login";
 		
 	}
-	
-	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
-	public void updateMember(MemberDTO mDto, HttpSession session, RedirectAttributes rttr, Model model) throws Exception{
-		rttr.addFlashAttribute("msg","회원정보 수정이 완료되었습니다.");
-		}
-	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public void mypage() throws Exception {
 		
+	}
+	
+	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	public void updateMember() throws Exception{
+		
 		}
+	@RequestMapping(value = "/updateMemberPost")
+	public String updateMemberPost(MemberDTO mDto, Model model, RedirectAttributes rttr, HttpSession session) throws Exception{
+		
+		log.info("post MemberUpdate....");
+		service.updateMember(mDto);
+		MemberDTO memList = service.login(mDto);
+		
+		session.setAttribute("login", memList);
+		
+		rttr.addFlashAttribute("msg","회원수정 완료");
+		return "redirect:/secretgarden/member/mypage";
+		
+	}
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
+	public void deleteMember() throws Exception{
+		
+		}
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
+	public String deleteMemberPost(MemberDTO mDto, Model model, RedirectAttributes rttr, HttpSession session) throws Exception{
+		log.info("post deleteMember..............");
+		
+		MemberDTO member = (MemberDTO)session.getAttribute("login");
+		
+		String oldpw = member.getUserpw();
+		String newpw = mDto.getUserpw();
+		
+		if(oldpw.equals(newpw)) {
+			service.deleteMember(mDto);
+			rttr.addFlashAttribute("result","removeOK");
+			session.invalidate();
+			return "redirect:/secretgarden/main";
+		}
+		else {
+			rttr.addFlashAttribute("result","removeFalse");
+			return "redirect:/secretgarden/member/deleteMember";
+		}
+		
+	}
+	@ResponseBody
+	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
+	public int idChk(String userid) throws Exception{
+		int result = service.idcheck(userid);
+		log.info("result=====>"+result);
+		log.info("userid=====>"+userid);
+		return result;
+	}
+
+	
+	
 
 }

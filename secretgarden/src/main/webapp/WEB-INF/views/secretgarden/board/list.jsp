@@ -23,30 +23,28 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${ctx}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${ctx}/resources/css/style.css" rel="stylesheet" />
         <link href="${ctx}/resources/css/index.css" rel="stylesheet" />
+        <link href="${ctx}/resources/js_old/script.js" rel="stylesheet" />
+        
+        <style type="text/css">
+        	.row{
+        		text-align: center;
+        	}
+        	.pull-right {
+			  width: 300px;
+			  margin-left: auto;
+			  margin-right: auto;
+			  
+			  
+			}
+			.pull-right.paginate_button{
+				color: #bbb;
+			}
+        </style>
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="${ctx }/secretgarden/main">Secret Garden</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#what-we-do-section">Caution</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#about-section">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#portfolio-section">Themes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/board/list">QnA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#studio-section">Coming soon..</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#contact-section">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/login">Log in</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- listhead-->
-      
+
         <header class="listhead">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
@@ -73,14 +71,14 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Board List Page
+                           
                             <button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-hover">
                                 <thead>
-                                    <tr>
+                                    <tr class="success">
                                         <th>#번호</th>
                                         <th>제목</th>
                                         <th>작성자</th>
@@ -91,7 +89,7 @@
                                 <tbody>
                                 	<c:forEach items="${list }" var="board">
                                 		<tr>
-                                			<td>${board.bno }</td>
+                                			<td class="danger">${board.bno }</td>
                                 			<td><a href="${ctx}/secretgarden/board/read?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&bno=${board.bno}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">${board.title}</a>
                                 				<b>[${board.replyCnt}]</b>
                                 			</td>
@@ -121,7 +119,7 @@
                        		</form>
                        	</div>
                        </div>
-                <div class='pull-right'>
+                <div class="pull-right">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">
 							<li class="paginate_button previous"><a

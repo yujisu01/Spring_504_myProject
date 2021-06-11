@@ -3,26 +3,71 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="/resources/includes/header.jsp"%>
 <c:set var="ctx" value="${pageContext.request.contextPath == '/' ? '' : pageContext.request.contextPath}" scope="application"/>
-
+<style>
+	.uploadResult {
+		width:100%;
+		background-color: gray;
+	}
+	
+	.uploadResult ul{
+		display:flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.uploadResult ul li {
+		list-style: none;
+		padding: 10px;
+		align-content: center;
+		text-align: center;
+	}
+	
+	.uploadResult ul li img{
+		width: 100px;
+	}
+	
+	.uploadResult ul li span {
+		color:white;
+	}
+	
+	.bigPictureWrapper {
+		position: absolute;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		top:0%;
+		width:100%;
+		height:100%;
+		background-color: gray; 
+		z-index: 100;
+		background:rgba(255,255,255,0.5);
+	}
+	
+	.bigPicture {
+		position: relative;
+		display:flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.bigPicture img {
+		width:600px;
+	}
+	.panel-heading{
+		text-align: center;
+	}
+	#read{
+		padding-right: 50px;
+		padding-left: 50px;
+		padding-top: 50px;
+	}
+	.panel-footer{
+		text-align: center;
+	}
+</style>
 <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="${ctx }/secretgarden/main">Secret Garden</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#what-we-do-section">Caution</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#about-section">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#portfolio-section">Themes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/board/list">QnA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#studio-section">Coming soon..</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#contact-section">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/login">Log in</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header"></h1>
@@ -30,6 +75,8 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+
 
 <script>
 	$(document).ready(function(){
@@ -50,38 +97,45 @@
 	});
 </script>
 
-<div class="row">
+
+
+<div class="row" id="read">
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Read Page</div>
+      <div class="panel-heading"></div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
      <%--    <form role="form" action="${ctx}/board/register" method="post"> --%>
           <div class="form-group">
-            <label>Bno</label> <input class="form-control" name='bno' value="${board.bno}" readonly="readonly">
+            <label>작성일</label> <input class="form-control" name='regdate' value="${board.regdate}" readonly="readonly">
+          </div>
+<%--           <div class="form-group">
+            <label>글번호</label> <input class="form-control" name='bno' value="${board.bno}" readonly="readonly">
+          </div> --%>
+          <div class="form-group">
+            <label>글제목</label> <input class="form-control" name='title' value="${board.title}" readonly="readonly">
           </div>
           <div class="form-group">
-            <label>Title</label> <input class="form-control" name='title' value="${board.title}" readonly="readonly">
+            <label>작성자</label> <input class="form-control" name="writer" value="${board.writer}" readonly="readonly">
           </div>
 
           <div class="form-group">
-            <label>Content</label>
+            <label>내용</label>
             <textarea class="form-control" rows="3" name='content' readonly="readonly">${board.content}</textarea>
           </div>
 
-          <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer' value="${board.writer}" readonly="readonly">
-          </div>
-          <button data-oper="modify" class="btn btn-default">Modify</button>
+           <c:if test="${login.userid == board.writer}">
+         	<button data-oper="modify" class="btn btn-default">Modify</button>
+         </c:if>
           <button data-oper="list" class="btn btn-info">List</button>
-          <form action="${ctx}/secretgarden/board/modify" method="get" id="operForm">
-          	<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
-          	<input type="hidden" name="pageNum" value= '<c:out value="${cri.pageNum}"/>'>
-          	<input type="hidden" name="amount" value= '<c:out value="${cri.amount}"/>'>
-          	<input type="hidden" name="keyword" value= '<c:out value="${cri.keyword}"/>'>
-          	<input type="hidden" name="type" value= '<c:out value="${cri.type}"/>'>
+          <form id="operForm" action="${ctx}/secretgarden/board/modify" method="get">
+          	<input type="hidden" id="bno" name="bno" value="${board.bno}">
+          	<input type="hidden" id="pageNum" name="pageNum" value="${cri.pageNum}">
+          	<input type="hidden" id="amount" name="amount" value="${cri.amount}">
+          	<input type="hidden" name="keyword" value="${cri.keyword}">
+          	<input type="hidden" name="type" value="${cri.type}">
           </form>
          <%--  <input type="button" value="삭제" onclick="del(${board.seq})"> --%>
      <!--    </form> -->
@@ -96,6 +150,30 @@
 </div>
 <!-- /.row -->
 
+<div class='bigPictureWrapper'>
+  <div class='bigPicture'>
+  </div>
+</div>
+
+<div class="row" id="read">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading"></div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        
+        <div class="uploadResult"> 
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <!--  end panel-body -->
+    </div>
+    <!--  end panel-body -->
+  </div>
+  <!-- end panel -->
+</div>
 
 
 <div class='row'>
@@ -104,8 +182,10 @@
     <!-- /.panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+        <i class="fa fa-comments fa-fw"></i> 
+          <c:if test="${not empty login }">
+       		 <button id='addReplyBtn' class='btn btn-success'>댓글쓰기</button>
+        </c:if>
       </div>      
       
       <!-- /.panel-heading -->
@@ -127,16 +207,17 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+				<h4 class="modal-title" id="myModalLabel">댓글</h4>
             </div>
             <div class="modal-body">
             	<div class="form-group">
-            		<label>ReplyText</label>
-            		<input class="form-control" name="replytext" value="New Reply!!!!">
+            		<label>댓글내용</label>
+            		<input class="form-control" name="replytext" value="">
             	</div>
             	<div class="form-group">
-            		<label>Replyer</label>
-            		<input class="form-control" name="replyer" value="replyer">
+            		<label>작성자</label>
+            		<%-- <input type="hidden" name="replyer" value="${login.userid}"> --%>
+            		<input class="form-control" name="replyer" value="${login.userid}" placeholder="${login.userid}" readonly="readonly">
             	</div>
 				<div class="form-group">
 					<label>Reply Date</label>
@@ -144,10 +225,12 @@
 				</div>
             </div>
 			<div class="modal-footer">
+			<c:if test="${login.userid == board.writer}">
         		<button id="modalModifyBtn" type="button" class="btn btn-warning">Modify</button>
         		<button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-        		<button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
-        		<button id="modalCloseBtn" type="button" class="btn btn-default">Close</button>
+        		</c:if>
+        		<button id="modalRegisterBtn" type="button" class="btn btn-primary">등록</button>
+        		<button id="modalCloseBtn" type="button" class="btn btn-default">닫기</button>
       		</div>          
     	</div>
           <!-- /.modal-content -->
@@ -191,7 +274,7 @@ $(document).ready(function() {
 						str +="  <div><div class='header'><strong class='primary-font'>["
 							+ list[i].rno+"] "+list[i].replyer+"</strong>";
 						str +="    <small class='pull-right text-muted'>"
-							+ replyService.displayTime(list[i].updatedate)+"list[i].updatedate"+list[i].updatedate+"</small></div>";
+							+ replyService.displayTime(list[i].updatedate)+"</small></div>";
 						str +="    <p>"+list[i].replytext+"</p></div></li>";
 					}
 					 
@@ -259,7 +342,7 @@ $(document).ready(function() {
     var modalInputReplyText = modal.find("input[name='replytext']");
     var modalInputReplyer = modal.find("input[name='replyer']");
     var modalInputReplyDate = modal.find("input[name='replyDate']");
-    
+    /* console.log("replyer"+modalInputReplyer); */
     var modalModifyBtn = $("#modalModifyBtn");
     var modalRemoveBtn = $("#modalRemoveBtn");
     var modalRegisterBtn = $("#modalRegisterBtn");
@@ -270,7 +353,8 @@ $(document).ready(function() {
     
     
     $("#addReplyBtn").on("click", function(e){
-    	modal.find("input").val("");
+    	modal.find("input");
+    	/* modal.find("input").val(""); */
     	modalInputReplyDate.closest("div").hide();
     	modal.find("button[id !='modalCloseBtn']").hide();
     	
@@ -289,8 +373,8 @@ $(document).ready(function() {
     	
         replyService.add(reply, function(result){
         	alert(result);
-        	
-        	modal.find("input").val("");
+        	modal.find("input[name='replytext']").val("");
+        	//modal.find("input").val("");
         	modal.modal("hide");
         	
         	showList(-1);
@@ -358,5 +442,74 @@ $(document).ready(function() {
 		operForm.submit();
 	});  
 });
+</script>
+
+<script>
+$(document).ready(function() {
+	  (function() {
+	  	var bno = "${board.bno}";
+	    
+	    $.getJSON("${ctx}/secretgarden/board/getAttachList", {bno: bno}, function(arr) {
+	        
+	       console.log(arr);
+	       
+	       var str = "";
+	       
+	       $(arr).each(function(i, attach){
+	       
+	         if(attach.filetype){
+	           var fileCallPath =  encodeURIComponent(attach.uploadPath+ "/s_" + attach.uuid +"_" + attach.fileName);
+	           
+	           str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.filetype + "' ><div>";
+	           str += "<img src='${ctx}/display?fileName=" + fileCallPath+"'>";
+	           str += "</div>";
+	           str +"</li>";
+	         } else {
+	           str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.filetype+"' ><div>";
+	           str += "<span> "+ attach.fileName + "</span><br/>";
+	           str += "<img src='${contextPath}/resources/img/attach.png'></a>";
+	           str += "</div>";
+	           str +"</li>";
+	         }
+	       });
+	       
+	       $(".uploadResult ul").html(str);
+	     });//end getjson
+	  })();//end function
+	  
+	  $(".uploadResult").on("click","li", function(e){
+	      
+	    console.log("view image");
+	    
+	    var liObj = $(this);
+	    
+	    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+
+	    if(liObj.data("type")){
+	      showImage(path.replace(new RegExp(/\\/g),"/"));
+	    } else {
+	      self.location ="${ctx}/download?fileName=" + path;
+	    }
+	    
+	    
+	  });
+	  
+	  function showImage(fileCallPath){
+	    $(".bigPictureWrapper").css("display","flex").show();
+	    
+	    $(".bigPicture")
+	    .html("<img src='${ctx}/display?fileName="+fileCallPath+"' >")
+	    .animate({width:"100%", height: "100%"}, 1000);
+	    
+	  }
+
+	  $(".bigPictureWrapper").on("click", function(e){
+	    $(".bigPicture").animate({width:"0%", height: "0%"}, 1000);
+	    setTimeout(function(){
+	      $(".bigPictureWrapper").hide();
+	    }, 1000);
+	  });
+	});
+
 </script>
 <%@include file="/resources/includes/footer.jsp"%>

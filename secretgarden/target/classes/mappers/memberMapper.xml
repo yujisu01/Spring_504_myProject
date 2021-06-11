@@ -24,12 +24,13 @@
  	</select>
  	<update id="updateMember">
  		update tbl_member
- 		set userpw=#{userpw}, email=#{email}
+ 		set userpw=#{userpw}, email=#{email}, username=#{username}
  		where userid=#{userid}
  	</update>
  	<delete id="deleteMember">
  		delete from tbl_member
- 		where userid=#{userid}
+ 		where userid=#{userid} 
+ 		and userpw=#{userpw}
  	</delete>
  	<select id="login" resultType="com.secretgarden.project.member.domain.MemberDTO">
  		select *
@@ -39,6 +40,11 @@
  	</select>
  	<select id="mypage" resultType="com.secretgarden.project.member.domain.MemberDTO">
  		select userpw, username, email
+ 		from tbl_member
+ 		where userid=#{userid}
+ 	</select>
+ 	<select id="idcheck" parameterType="String" resultType="Integer">
+ 		select count(*) 
  		from tbl_member
  		where userid=#{userid}
  	</select>

@@ -1,6 +1,7 @@
 package com.secretgarden.project.board.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class BoardDTO {
 	private Date regdate;
 	private int viewcnt;
 	private int replyCnt;
+	private List<BoardAttachDTO> attachList;
 
 }

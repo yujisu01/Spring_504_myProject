@@ -30,33 +30,27 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${ctx}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${ctx}/resources/css/style.css" rel="stylesheet" />
         <link href="${ctx}/resources/css/index.css" rel="stylesheet" />
          <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
+		<style type="text/css">
+			#frm{
+				text-align: center;
+				padding-bottom: 30px;
+				padding-top: 30px;
+				
+			}
+			.gameList{
+				padding-left: 50px;
+				padding-right: 50px;
+			}
+		</style>
+		
     </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="${ctx }/secretgarden/main">Secret Garden</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#what-we-do-section">Caution</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#about-section">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#portfolio-section">Themes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/board/list">QnA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#studio-section">Coming soon..</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#contact-section">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/login">Log in</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+  <body id="page-top">
         <header class="listhead">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
@@ -71,36 +65,54 @@
         </header>
         <!-- header close -->
 		
-		
+
 		<script>
 		
-		/* function reservationForm(url) {
-			var form = document.createElement("form");
-			var parentNoInput = document.createElement("input");
-			var rdate = document.getElementsByName("rdate")[0].value;
-			//alert(rdate);
-			form.setAttribute("method","post");
-			form.setAttribute("action",url);
-			
-			parentNoInput = document.createElement("input");
-			parentNoInput.setAttribute("type","hidden");
-			parentNoInput.setAttribute("name","rdate");
-			parentNoInput.setAttribute("value",rdate);
-			
-			form.appendChild(parentNoInput);
-			document.body.appendChild(form);
-			
-			form.submit();
-		}
-		 */
+		/*  function dateCheck(){
+			 var datepicker = $('#datePicker.rdate').val;
+			 
+			 if(datepicker ==''){
+				 alert("날짜를 선택해주세요!");
+			 }
+		 } */
+		 /* function reservationForm(url) {
+				var form = document.createElement("form");
+				var parentNoInput = document.createElement("input");
+				var rdate = document.getElementsByName("rdate")[0].value;
+				var bookno = document.getElementsByName("bookno")[0].value;
+				//alert(rdate);
+				form.setAttribute("method","get");
+				form.setAttribute("action",url);
+				
+				parentNoInput = document.createElement("input");
+				parentNoInput.setAttribute("type","hidden");
+				parentNoInput.setAttribute("name","bookno");
+				parentNoInput.setAttribute("value",bookno);
+				form.appendChild(parentNoInput);
+				
+				parentNoInput = document.createElement("input");
+				parentNoInput.setAttribute("type","hidden");
+				parentNoInput.setAttribute("name","rdate");
+				parentNoInput.setAttribute("value",rdate);
+				form.appendChild(parentNoInput);
+				
+				document.body.appendChild(form);
+				form.submit();
+			}
+		   */
+		   
 	$(function() {	
 		$('#datePicker').datepicker({
+			SimpleDateFormat: Date,
+			mindate:0,
 		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
 		    startDate: '-1d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 		    endDate: '+10d',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
 		    autoclose : true,	//사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
 		    calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
 		    clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
+		    closeText:'닫기',
+		    cancelLabel: 'Cancel',
 		    datesDisabled : ['2019-06-24','2019-06-26'],//선택 불가능한 일 설정 하는 배열 위에 있는 format 과 형식이 같아야함.
 		    daysOfWeekDisabled : [0,6],	//선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
 		    daysOfWeekHighlighted : [3], //강조 되어야 하는 요일 설정
@@ -119,7 +131,26 @@
 		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
 		    language : "ko"	,//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
          onSelect:function(d){
-					alert(d+"선택되었습니다");
+					alert(d+" 선택되었습니다");
+					  var arr=d.split("-");
+			            var year=arr[0];
+			            var month=arr[1];
+			            var day=arr[2];
+			            
+			            $("#year").text(year);
+			            $("#month").text(month);
+			            $("#day").text(day);
+			           
+			            var rdate=new Date($("#datePicker_bbs").datepicker({
+			            	SimpleDateFormat:"yyyy-mm-dd"}).val());
+				}
+		 
+		});//datepicker end
+		$("#datePicker_bbs").datepicker({ 
+			SimpleDateFormat: Date,
+			minDate: 0,
+			 onSelect:function(d){
+					alert(d+" 선택되었습니다");
 					  var arr=d.split("/");
 			            var year=arr[0];
 			            var month=arr[1];
@@ -128,9 +159,12 @@
 			            $("#year").text(year);
 			            $("#month").text(month);
 			            $("#day").text(day);
-			            var rdate=new Date($("#date").datepicker({dateFormat:"yy/mm/dd"}).val());
+			           
+			            var rdate=new Date($("#datePicker_bbs").datepicker({
+			            	dateFormat:"yyyy-MM-dd"}).val());
 				}
-		});//datepicker end
+			
+		});
 	});//ready end
 	
      $('#datePicker').datepicker({
@@ -142,20 +176,50 @@
                   //picker_event는 "이벤트명" 이런 식으로 적는다.
                   //하고 싶은 행동
              } */
-		$("#datepicker_bbs").datepicker({ minDate: 0});
-		 $('#datepicker').datepicker('setDate', 'today');
-		
+		/* $('#datepicker_bbs').datepicker({ minDate: 0}); */
+		$('#datePicker').datepicker({ minDate: 0});
+		 $('#datePicker_bbs').datepicker("setDate", "today");
+		 $('#datePicker').datepicker('getDate');
+		 
+		function rese(no) {
+			var rdate = document.getElementById("datePicker_bbs").value;
+			
+			location.href="${ctx}/secretgarden/reservation/reservationDetail?bookno="+no+"&rdate="+rdate;
+		}
+/* 		function noPreviousdate(date){ 
+			 
+		    if (date < new Date()) 
+		 
+		        return [false]; 
+		 
+		    return [true]; 
+		 
+		}  */
+		function reserveBtnClick(rdate){
+			${(input.rdate).attr("value",rdate)}
+		}
+
 	</script>
   
-      	<body>
+
+      	<div id="frm">
 	<!-- 시작시 기본 날짜 설정은 value를 이용 -->
-			<input type="text" name="rdate" id="datePicker" class="form-control" value="날짜를 선택해주세요" readonly id="datepicker_bbs" >
-		</body>
+		<form name="frm" action="${ctx}/secretgarden/reservation/reservationDetail?bookno=${rDto.bookno}" method="get">
+				<!-- <input type="text" name="rdate" id="datePicker" class="form-control" value="날짜를 선택해주세요" readonly id="datepicker_bbs" > -->
+				
+				<input type="text" name="rdate" class="datePicker" value="날짜를 선택해주세요" readonly id="datePicker_bbs">
+			</form>
+		<form name="reservation" action="${ctx}/secretgarden/reservation/reservationSelect">
+			<input type="hidden" name="rdate" class="datePicker">
+		</form>
+		<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${ctx}/secretgarden/reservation/reservationConfirm'">예약확인</button>
+	</div>
+<div id="gameList">
   <table class="table">
       <thead>
         <tr>
           
-       <!--    <th> 순서 </th> -->
+          <!--  <th> 순서 </th> -->
           <th> 게임룸 </th>
           <th> 시작시간 </th>
           <th> 소요시간 </th>
@@ -165,23 +229,27 @@
         </tr>
       </thead>
       <tbody>
+      
        	<c:forEach items="${listAll}" var="rDto">
        		<tr>
-       			<%-- <td>${rDto.bookno}</td> --%>
+       			 <%-- <td>${rDto.bookno}</td>  --%>
+       			 
        			<td>${rDto.bookroom}</td>
        			<td>${rDto.bookhour}</td>
        			<td>${rDto.bookduration}</td>
        			<td>${rDto.bookpeople}</td>
        			<td></td>
-       			<td><a href="#">예약하기</a></td>
-       			<%-- <td><a href="${ctx}/secretgarden/reservationDetail?bookno=${}&date=${}">예약하기</a></td> --%>
+       			<td><button onclick="javascript:rese(${rDto.bookno}); reserveBtnClick(${rdate});" style="cursor: pointer;" id="reseButton">
+					예약하기
+				</button></td>
        		</tr>
        	</c:forEach>
        
        	
        </tbody>
       </table>
-        
+      </div>
+  <!--  </body> -->
         
         
         

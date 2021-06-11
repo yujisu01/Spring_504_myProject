@@ -7,7 +7,7 @@
 				 <%
 	 
     String clientId = "IJTNwx_73vMqJz4i3nvW";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:9090/project/login_form.project", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://localhost:9090/secretgarden/member/login", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -36,28 +36,11 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${ctx}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${ctx}/resources/css/style.css" rel="stylesheet" />
         <link href="${ctx}/resources/css/index.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="${ctx }/secretgarden/main">Secret Garden</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#portfolio">Themes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/main#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/board/list">QnA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${ctx }/secretgarden/member/login">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+      
         <html>
 <head>
 <title>로그인</title>
@@ -83,7 +66,7 @@
 					 	</div>
 					 	</fieldset>
 					 	<div class="pass">
-					 		<a href="#">Forgot Password?</a>
+					 		<!-- <a href="#">Forgot Password?</a> -->
 					 	</div>
 					 		<div class="field">
 					 	<input type="submit" value="LOGIN">
@@ -131,8 +114,8 @@
       //]]>
     </script>
 		</div>		
-					</form>
-				</div>
+		</form>
+			</div>
 				</div>
 					
 	

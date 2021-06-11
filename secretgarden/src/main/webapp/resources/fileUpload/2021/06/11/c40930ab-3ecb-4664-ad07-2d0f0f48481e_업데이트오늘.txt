@@ -1,0 +1,7 @@
+6.7 오류
+
+파일 오류
+insert into values 라고 안쓰고
+insert values라고 해서 계속 두번써짐 (글이)
+
+'${ctx}/secretgarden/reservation/reservationDetail?bookno={rDto.bookno}'

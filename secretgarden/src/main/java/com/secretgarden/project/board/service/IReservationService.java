@@ -6,4 +6,5 @@ import com.secretgarden.project.domain.ReservationDTO;
 
 public interface IReservationService {
 	public List<ReservationDTO> reservationList() throws Exception;
+	public ReservationDTO reservationDetail(int bookno) throws Exception; 
 }
